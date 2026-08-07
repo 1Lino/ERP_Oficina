@@ -1,6 +1,6 @@
-# ERP_Oficina
+# ERP Oficina de Manutenção
 
-ERP_Oficina é um sistema desktop em Windows Forms para gestão de oficinas mecânicas.
+ERP Oficina de Manutenção é um sistema desktop em Windows Forms para gestão de oficinas mecânicas.
 
 ## Descrição
 
