@@ -1,0 +1,14 @@
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\ERP_Oficina.exe
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\ERP_Oficina.deps.json
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\ERP_Oficina.runtimeconfig.json
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\ERP_Oficina.dll
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\ERP_Oficina.pdb
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.GeneratedMSBuildEditorConfig.editorconfig
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.AssemblyInfoInputs.cache
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.AssemblyInfo.cs
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.csproj.CoreCompileInputs.cache
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.dll
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\refint\ERP_Oficina.dll
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.pdb
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.genruntimeconfig.cache
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ref\ERP_Oficina.dll
