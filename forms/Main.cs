@@ -1,3 +1,5 @@
+using ERP_Oficina.Controls;
+
 namespace ERP_Oficina;
 
 public partial class FormMain : Form
@@ -76,6 +78,7 @@ public partial class FormMain : Form
 
         // int top = 10;
 
+        // TODO: adicionar evento de click pra cada botão
         foreach (string item in menus)
         {
             Button btn = new Button
@@ -91,8 +94,8 @@ public partial class FormMain : Form
             btn.Font = new Font("Segoe UI", 10);
             btn.Cursor = Cursors.Hand;
 
-            btn.MouseEnter += (s, e) => ((Button)s).BackColor = Color.FromArgb(70, 80, 100);
-            btn.MouseLeave += (s, e) => ((Button)s).BackColor = Color.FromArgb(45, 55, 72);
+            btn.MouseEnter += (s, e) => btn.BackColor = Color.FromArgb(70, 80, 100);
+            btn.MouseLeave += (s, e) => btn.BackColor = Color.FromArgb(45, 55, 72);
 
             pnlMenu.Controls.Add(btn);
             pnlMenu.Controls.SetChildIndex(btn, 0);
@@ -108,6 +111,7 @@ public partial class FormMain : Form
             BackColor = Color.WhiteSmoke
         };
 
+        // É neste painel que vai todo o conteúdo das abas.
         Label lblArea = new Label
         {
             Text = "Área de Trabalho",
@@ -117,7 +121,13 @@ public partial class FormMain : Form
             Location = new Point(40, 40)
         };
 
-        pnlConteudo.Controls.Add(lblArea);
+        ClientesControl clientes = new ClientesControl();
+
+        pnlConteudo.Controls.Add(clientes);
+
+        clientes.Dock = DockStyle.Fill;
+
+        // pnlConteudo.Controls.Add(lblArea);
 
         // FORM:
 
