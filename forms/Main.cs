@@ -10,6 +10,9 @@ public partial class FormMain : Form
     public FormMain()
     {
         InitializeComponent();
+        // Ao abrir o app, carrega os dados de teste:
+        DadosMock.CriarDadosTesteClientes();
+        DadosMock.CriarDadosTesteEquipamento();
     }
 
     private void InitializeComponent()
@@ -76,9 +79,6 @@ public partial class FormMain : Form
             "Configurações"
         };
 
-        // int top = 10;
-
-        // TODO: adicionar evento de click pra cada botão
         foreach (string item in menus)
         {
             Button btn = new Button
@@ -96,11 +96,11 @@ public partial class FormMain : Form
 
             btn.MouseEnter += (s, e) => btn.BackColor = Color.FromArgb(70, 80, 100);
             btn.MouseLeave += (s, e) => btn.BackColor = Color.FromArgb(45, 55, 72);
+            btn.Click += (s, e) => CallPanel(item);
 
             pnlMenu.Controls.Add(btn);
             pnlMenu.Controls.SetChildIndex(btn, 0);
 
-            // top += 45;
         }
 
         // CONTEÚDO:
@@ -121,18 +121,50 @@ public partial class FormMain : Form
             Location = new Point(40, 40)
         };
 
-        ClientesControl clientes = new ClientesControl();
-
-        pnlConteudo.Controls.Add(clientes);
-
-        clientes.Dock = DockStyle.Fill;
-
-        // pnlConteudo.Controls.Add(lblArea);
-
         // FORM:
 
         Controls.Add(pnlConteudo);
         Controls.Add(pnlMenu);
         Controls.Add(pnlTopo);
+    }
+
+    private void CallPanel(string menu)
+    {
+        pnlConteudo.Controls.Clear();
+        switch (menu)
+        {
+            case "Dashboard":
+                break;
+            case "Clientes":
+                ClientesControl clientes = new ClientesControl();
+                pnlConteudo.Controls.Add(clientes);
+                clientes.Dock = DockStyle.Fill;
+                break;
+            case "Equipamentos":
+                EquipamentosControl equipamentos = new EquipamentosControl();
+                pnlConteudo.Controls.Add(equipamentos);
+                equipamentos.Dock = DockStyle.Fill;
+                break;
+            case "Produtos":
+                break;
+            case "Categorias":
+                CategoriasControl categorias = new CategoriasControl();
+                pnlConteudo.Controls.Add(categorias);
+                categorias.Dock = DockStyle.Fill;
+                break;
+            case "Serviços":
+                break;
+            case "Ordens de Serviço":
+                break;
+            case "Estoque":
+                break;
+            case "Relatórios":
+                break;
+            case "Usuários":
+                break;
+            case "Configurações":
+                break;
+
+        }
     }
 }
