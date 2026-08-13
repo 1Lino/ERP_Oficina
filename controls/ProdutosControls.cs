@@ -1,7 +1,9 @@
 
+using ERP_Oficina.Forms;
+
 namespace ERP_Oficina.Controls
 {
-    public class CategoriasControl : UserControl
+    public class ProdutosControl : UserControl
     {
         // =========================================================
         // CONTROLES
@@ -17,7 +19,7 @@ namespace ERP_Oficina.Controls
         private TextBox txtPesquisar;
         private Button btnBuscar;
 
-        private DataGridView dgvCategorias;
+        private DataGridView dgvProdutos;
 
         private Panel pnlPaginacao;
         private FlowLayoutPanel pnlBotoesPaginacao;
@@ -29,23 +31,19 @@ namespace ERP_Oficina.Controls
         // =========================================================
 
         private int paginaAtual = 1;
-
         private int itensPorPagina = 5;
-
         private int totalPaginas = 1;
-
-        private List<Categoria> categoriasFiltradas = new List<Categoria>();
+        private List<Produto> produtosFiltrados = new List<Produto>();
 
         // =========================================================
         // CONSTRUTOR
         // =========================================================
 
-        public CategoriasControl()
+        public ProdutosControl()
         {
             InitializeComponent();
 
-            categoriasFiltradas = DadosMock.Categorias.ToList();
-
+            produtosFiltrados = DadosMock.Produtos.ToList();
             CarregarPagina();
         }
 
@@ -71,11 +69,16 @@ namespace ERP_Oficina.Controls
             // HEADER
             // =====================================================
 
-            pnlHeader = new Panel { Dock = DockStyle.Top, Height = 55, BackColor = Color.White };
+            pnlHeader = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 55,
+                BackColor = Color.White
+            };
 
             lblTitulo = new Label
             {
-                Text = "Categorias",
+                Text = "Produtos",
                 Font = new Font("Segoe UI", 18F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(35, 35, 35),
                 AutoSize = true,
@@ -83,31 +86,25 @@ namespace ERP_Oficina.Controls
             };
 
             // =====================================================
-            // BOTÃO EDITAR
+            // EDITAR
             // =====================================================
 
             btnEditar = CriarBotao("Editar", Color.White, Color.FromArgb(70, 70, 70));
-
             btnEditar.Width = 90;
             btnEditar.Height = 35;
-
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-
             btnEditar.Location = new Point(pnlHeader.Width - 190, 5);
 
             btnEditar.Click += BtnEditar_Click;
 
             // =====================================================
-            // BOTÃO NOVO
+            // NOVO
             // =====================================================
 
             btnNovo = CriarBotao("Novo", Color.FromArgb(0, 120, 215), Color.White);
-
             btnNovo.Width = 90;
             btnNovo.Height = 35;
-
             btnNovo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-
             btnNovo.Location = new Point(pnlHeader.Width - 90, 5);
 
             btnNovo.Click += BtnNovo_Click;
@@ -130,7 +127,12 @@ namespace ERP_Oficina.Controls
             // PESQUISA
             // =====================================================
 
-            pnlPesquisa = new Panel { Dock = DockStyle.Top, Height = 55, BackColor = Color.White };
+            pnlPesquisa = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 55,
+                BackColor = Color.White
+            };
 
             lblPesquisar = new Label
             {
@@ -151,26 +153,18 @@ namespace ERP_Oficina.Controls
             };
 
             btnBuscar = CriarBotao("Buscar", Color.FromArgb(0, 120, 215), Color.White);
-
             btnBuscar.Width = 80;
             btnBuscar.Height = 32;
-
             btnBuscar.Location = new Point(490, 10);
-
             btnBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
             btnBuscar.Click += BtnBuscar_Click;
-
-            // =====================================================
-            // RESPONSIVIDADE DA PESQUISA
-            // =====================================================
 
             pnlPesquisa.Resize += (s, e) =>
             {
                 btnBuscar.Location = new Point(pnlPesquisa.ClientSize.Width - btnBuscar.Width, 10);
                 txtPesquisar.Width = pnlPesquisa.ClientSize.Width - lblPesquisar.Width - btnBuscar.Width - 25;
             };
-
             txtPesquisar.KeyDown += TxtPesquisar_KeyDown;
 
             pnlPesquisa.Controls.Add(lblPesquisar);
@@ -181,7 +175,7 @@ namespace ERP_Oficina.Controls
             // GRID
             // =====================================================
 
-            dgvCategorias = new DataGridView
+            dgvProdutos = new DataGridView
             {
                 Dock = DockStyle.Fill,
                 BackgroundColor = Color.White,
@@ -200,10 +194,10 @@ namespace ERP_Oficina.Controls
             };
 
             // =====================================================
-            // HEADER DO GRID
+            // HEADER
             // =====================================================
 
-            dgvCategorias.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+            dgvProdutos.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(245, 246, 248),
                 ForeColor = Color.FromArgb(50, 50, 50),
@@ -216,7 +210,7 @@ namespace ERP_Oficina.Controls
             // CÉLULAS
             // =====================================================
 
-            dgvCategorias.DefaultCellStyle = new DataGridViewCellStyle
+            dgvProdutos.DefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(50, 50, 50),
@@ -225,33 +219,108 @@ namespace ERP_Oficina.Controls
                 Padding = new Padding(5)
             };
 
-            dgvCategorias.RowTemplate.Height = 40;
+            dgvProdutos.RowTemplate.Height = 40;
 
             // =====================================================
-            // NOME
+            // PRODUTO
             // =====================================================
 
-            dgvCategorias.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Nome",
-                HeaderText = "Nome",
-                DataPropertyName = "Nome",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                FillWeight = 35
-            });
+            dgvProdutos.Columns.Add(
+                new DataGridViewTextBoxColumn
+                {
+                    Name = "Nome",
+                    HeaderText = "Produto",
+                    DataPropertyName = "Nome",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    FillWeight = 25
+                }
+            );
 
             // =====================================================
-            // DESCRIÇÃO
+            // SKU
             // =====================================================
 
-            dgvCategorias.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Descricao",
-                HeaderText = "Descrição",
-                DataPropertyName = "Descricao",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                FillWeight = 65
-            });
+            dgvProdutos.Columns.Add(
+                new DataGridViewTextBoxColumn
+                {
+                    Name = "SKU",
+                    HeaderText = "SKU",
+                    DataPropertyName = "SKU",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    FillWeight = 15
+                }
+            );
+
+            // =====================================================
+            // CATEGORIA
+            // =====================================================
+
+            dgvProdutos.Columns.Add(
+                new DataGridViewTextBoxColumn
+                {
+                    Name = "Categoria",
+                    HeaderText = "Categoria",
+                    DataPropertyName = "CategoriaNome",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    FillWeight = 20
+                }
+            );
+
+            // =====================================================
+            // ESTOQUE
+            // =====================================================
+
+            dgvProdutos.Columns.Add(
+                new DataGridViewTextBoxColumn
+                {
+                    Name = "Estoque",
+                    HeaderText = "Estoque",
+                    DataPropertyName = "EstoqueAtual",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    FillWeight = 15,
+                    DefaultCellStyle = new DataGridViewCellStyle
+                    {
+                        Alignment = DataGridViewContentAlignment.MiddleRight,
+                        Format = "N2"
+                    }
+                }
+            );
+
+            // =====================================================
+            // PREÇO
+            // =====================================================
+
+            dgvProdutos.Columns.Add(
+                new DataGridViewTextBoxColumn
+                {
+                    Name = "Preco",
+                    HeaderText = "Preço",
+                    DataPropertyName = "Preco",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    FillWeight = 15,
+                    DefaultCellStyle = new DataGridViewCellStyle
+                    {
+                        Alignment = DataGridViewContentAlignment.MiddleRight,
+                        Format = "C2"
+                    }
+                }
+            );
+
+            // =====================================================
+            // STATUS
+            // =====================================================
+
+            dgvProdutos.Columns.Add(
+                new DataGridViewTextBoxColumn
+                {
+                    Name = "Status",
+                    HeaderText = "Status",
+                    DataPropertyName = "Ativo",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    FillWeight = 10
+                }
+            );
+            dgvProdutos.CellFormatting += DgvProdutos_CellFormatting;
 
             // =====================================================
             // PAGINAÇÃO
@@ -275,25 +344,23 @@ namespace ERP_Oficina.Controls
             };
 
             btnAnterior = CriarBotaoPagina("‹");
-
             btnProximo = CriarBotaoPagina("›");
-
             btnAnterior.Click += BtnAnterior_Click;
-
             btnProximo.Click += BtnProximo_Click;
-
             pnlBotoesPaginacao.Controls.Add(btnAnterior);
             pnlBotoesPaginacao.Controls.Add(btnProximo);
-
             pnlPaginacao.Controls.Add(pnlBotoesPaginacao);
 
             // =====================================================
             // CONTROLES
             // =====================================================
 
-            Controls.Add(dgvCategorias);
+            Controls.Add(dgvProdutos);
+
             Controls.Add(pnlPaginacao);
+
             Controls.Add(pnlPesquisa);
+
             Controls.Add(pnlHeader);
 
             ResumeLayout(false);
@@ -305,8 +372,7 @@ namespace ERP_Oficina.Controls
 
         private void CarregarPagina()
         {
-            int quantidadeTotal = categoriasFiltradas.Count;
-
+            int quantidadeTotal = produtosFiltrados.Count;
             totalPaginas = (int)Math.Ceiling((double)quantidadeTotal / itensPorPagina);
 
             if (totalPaginas == 0)
@@ -317,10 +383,13 @@ namespace ERP_Oficina.Controls
 
             int indiceInicial = (paginaAtual - 1) * itensPorPagina;
 
-            List<Categoria> categoriasPagina = categoriasFiltradas.Skip(indiceInicial).Take(itensPorPagina).ToList();
+            List<Produto> produtosPagina = produtosFiltrados
+                .Skip(indiceInicial)
+                .Take(itensPorPagina)
+                .ToList();
 
-            dgvCategorias.DataSource = null;
-            dgvCategorias.DataSource = categoriasPagina;
+            dgvProdutos.DataSource = null;
+            dgvProdutos.DataSource = produtosPagina;
 
             AtualizarPaginacao();
         }
@@ -335,75 +404,114 @@ namespace ERP_Oficina.Controls
 
             if (string.IsNullOrWhiteSpace(pesquisa))
             {
-                categoriasFiltradas = DadosMock.Categorias.ToList();
+                produtosFiltrados = DadosMock.Produtos.ToList();
             }
             else
             {
                 pesquisa = pesquisa.ToLower();
-                categoriasFiltradas = DadosMock.Categorias.Where(x => x.Nome.ToLower().Contains(pesquisa) || x.Descricao.ToLower().Contains(pesquisa)).ToList();
+
+                produtosFiltrados = DadosMock.Produtos
+                    .Where(x =>
+                        x.Nome.ToLower().Contains(pesquisa) ||
+                        x.SKU.ToLower().Contains(pesquisa) ||
+                        x.CategoriaNome.ToLower().Contains(pesquisa)
+                    )
+                    .ToList();
             }
 
             paginaAtual = 1;
-
             CarregarPagina();
         }
 
         // =========================================================
-        // NOVA CATEGORIA
+        // NOVO
         // =========================================================
 
         private void BtnNovo_Click(object sender, EventArgs e)
         {
-            using (FormCategoria form = new FormCategoria())
+            using (FormProduto form = new FormProduto())
             {
                 if (form.ShowDialog() != DialogResult.OK)
                     return;
 
-                int novoId = DadosMock.Categorias.Count == 0 ? 1 : DadosMock.Categorias.Max(x => x.Id) + 1;
+                int novoId = DadosMock.Produtos.Count == 0 ? 1 : DadosMock.Produtos.Max(x => x.Id) + 1;
 
-                Categoria categoria = new Categoria
+                Produto produto = new Produto
                 {
                     Id = novoId,
                     Nome = form.Nome,
-                    Descricao = form.Descricao
+                    SKU = form.SKU,
+                    CategoriaId = form.CategoriaId,
+                    CategoriaNome = form.CategoriaNome,
+                    EstoqueAtual = form.EstoqueAtual,
+                    Preco = form.Preco,
+                    Ativo = form.Ativo,
+                    DataCadastro = DateTime.Now
                 };
 
-                DadosMock.Categorias.Add(categoria);
+                DadosMock.Produtos.Add(produto);
                 Pesquisar();
             }
         }
 
         // =========================================================
-        // EDITAR CATEGORIA
+        // EDITAR
         // =========================================================
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
-            EditarCategoriaSelecionada();
-        }
-
-        private void EditarCategoriaSelecionada()
-        {
-            if (dgvCategorias.CurrentRow == null)
+            if (dgvProdutos.CurrentRow == null)
             {
-                MessageBox.Show("Selecione uma categoria.", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um produto.", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            Categoria categoria = dgvCategorias.CurrentRow.DataBoundItem as Categoria;
+            Produto produto = dgvProdutos.CurrentRow.DataBoundItem as Produto;
 
-            if (categoria == null)
+            if (produto == null)
                 return;
 
-            using (FormCategoria form = new FormCategoria(categoria))
+            using (FormProduto form = new FormProduto(produto))
             {
                 if (form.ShowDialog() != DialogResult.OK)
                     return;
 
-                categoria.Nome = form.Nome;
-                categoria.Descricao = form.Descricao;
+                produto.Nome = form.Nome;
+                produto.SKU = form.SKU;
+                produto.CategoriaId = form.CategoriaId;
+                produto.CategoriaNome = form.CategoriaNome;
+                produto.EstoqueAtual = form.EstoqueAtual;
+                produto.Preco = form.Preco;
+                produto.Ativo = form.Ativo;
+
                 Pesquisar();
             }
+        }
+
+        // =========================================================
+        // STATUS
+        // =========================================================
+
+        private void DgvProdutos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (dgvProdutos.Columns[e.ColumnIndex].Name != "Status")
+                return;
+
+            if (e.Value == null)
+                return;
+
+            bool ativo = Convert.ToBoolean(e.Value);
+
+            e.Value = ativo ? "Ativo" : "Inativo";
+
+            e.CellStyle.ForeColor = ativo
+                ? Color.FromArgb(25, 135, 84)
+                : Color.FromArgb(220, 53, 69);
+
+            e.CellStyle.Font = new Font(dgvProdutos.Font, FontStyle.Bold);
         }
 
         // =========================================================
@@ -432,6 +540,7 @@ namespace ERP_Oficina.Controls
         {
             if (paginaAtual <= 1)
                 return;
+
             paginaAtual--;
             CarregarPagina();
         }
@@ -440,6 +549,7 @@ namespace ERP_Oficina.Controls
         {
             if (paginaAtual >= totalPaginas)
                 return;
+
             paginaAtual++;
             CarregarPagina();
         }
@@ -447,6 +557,7 @@ namespace ERP_Oficina.Controls
         private void AtualizarPaginacao()
         {
             pnlBotoesPaginacao.Controls.Clear();
+
             btnAnterior.Enabled = paginaAtual > 1;
             pnlBotoesPaginacao.Controls.Add(btnAnterior);
 
@@ -454,7 +565,12 @@ namespace ERP_Oficina.Controls
             {
                 Button btnPagina = CriarBotaoPagina(i.ToString());
                 int pagina = i;
-                btnPagina.Click += (s, e) => { paginaAtual = pagina; CarregarPagina(); };
+
+                btnPagina.Click += (s, e) =>
+                {
+                    paginaAtual = pagina;
+                    CarregarPagina();
+                };
 
                 if (pagina == paginaAtual)
                 {
@@ -471,30 +587,28 @@ namespace ERP_Oficina.Controls
         }
 
         // =========================================================
-        // BOTÃO PADRÃO
+        // BOTÕES
         // =========================================================
 
         private Button CriarBotao(string texto, Color background, Color foreground)
         {
-            return new Button
+            Button btn = new Button
             {
                 Text = texto,
                 BackColor = background,
                 ForeColor = foreground,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 9.5F),
-                Cursor = Cursors.Hand,
-                FlatAppearance = { BorderColor = background, BorderSize = 1 }
+                Cursor = Cursors.Hand
             };
+            btn.FlatAppearance.BorderColor = background;
+            btn.FlatAppearance.BorderSize = 1;
+            return btn;
         }
-
-        // =========================================================
-        // BOTÃO PAGINAÇÃO
-        // =========================================================
 
         private Button CriarBotaoPagina(string texto)
         {
-            return new Button
+            Button btn = new Button
             {
                 Text = texto,
                 Width = 36,
@@ -504,199 +618,11 @@ namespace ERP_Oficina.Controls
                 ForeColor = Color.FromArgb(60, 60, 60),
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 9F),
-                Cursor = Cursors.Hand,
-                FlatAppearance = { BorderColor = Color.FromArgb(220, 220, 220), BorderSize = 1 }
-            };
-        }
-    }
-
-    // =============================================================
-    // FORMULÁRIO DE CATEGORIA
-    // =============================================================
-
-    public class FormCategoria : Form
-    {
-        private TextBox txtNome;
-
-        private TextBox txtDescricao;
-
-        private Button btnCancelar;
-
-        private Button btnSalvar;
-
-        // =========================================================
-        // PROPRIEDADES
-        // =========================================================
-
-        public string Nome { get; private set; }
-
-        public string Descricao { get; private set; }
-
-        // =========================================================
-        // NOVA CATEGORIA
-        // =========================================================
-
-        public FormCategoria()
-        {
-            InicializarFormulario();
-        }
-
-        // =========================================================
-        // EDITAR CATEGORIA
-        // =========================================================
-
-        public FormCategoria(Categoria categoria)
-        {
-            InicializarFormulario();
-            if (categoria != null)
-            {
-                txtNome.Text = categoria.Nome;
-                txtDescricao.Text = categoria.Descricao;
-            }
-        }
-
-        // =========================================================
-        // INICIALIZAÇÃO
-        // =========================================================
-
-        private void InicializarFormulario()
-        {
-            Text = "Categoria";
-            StartPosition = FormStartPosition.CenterParent;
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            ShowInTaskbar = false;
-            Width = 520;
-            Height = 330;
-            BackColor = Color.White;
-            Font = new Font("Segoe UI", 10F);
-
-            // =====================================================
-            // TÍTULO
-            // =====================================================
-
-            Label lblTitulo = new Label
-            {
-                Text = "Dados da categoria",
-                Font = new Font("Segoe UI", 16F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(35, 35, 35),
-                AutoSize = true,
-                Location = new Point(30, 25)
-            };
-
-            Controls.Add(lblTitulo);
-
-            // =====================================================
-            // NOME
-            // =====================================================
-
-            Label lblNome = CriarLabel("Nome", 30, 75);
-
-            txtNome = new TextBox
-            {
-                Location = new Point(30, 100),
-                Width = 445,
-                Height = 30
-            };
-
-            Controls.Add(lblNome);
-            Controls.Add(txtNome);
-
-            // =====================================================
-            // DESCRIÇÃO
-            // =====================================================
-
-            Label lblDescricao = CriarLabel("Descrição", 30, 140);
-
-            txtDescricao = new TextBox
-            {
-                Location = new Point(30, 165),
-                Width = 445,
-                Height = 65,
-                Multiline = true,
-                ScrollBars = ScrollBars.Vertical
-            };
-
-            Controls.Add(lblDescricao);
-            Controls.Add(txtDescricao);
-
-            // =====================================================
-            // CANCELAR
-            // =====================================================
-
-            btnCancelar = new Button
-            {
-                Text = "Cancelar",
-                Width = 100,
-                Height = 35,
-                Location = new Point(265, 250),
-                BackColor = Color.White,
-                ForeColor = Color.FromArgb(70, 70, 70),
-                FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand
             };
-            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(200, 200, 200);
-            btnCancelar.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
-
-            Controls.Add(btnCancelar);
-
-            // =================================================
-            // SALVAR
-            // =================================================
-
-            btnSalvar = new Button
-            {
-                Text = "Salvar",
-                Width = 100,
-                Height = 35,
-                Location = new Point(375, 250),
-                BackColor = Color.FromArgb(0, 120, 215),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Cursor = Cursors.Hand
-            };
-            btnSalvar.FlatAppearance.BorderColor = Color.FromArgb(0, 120, 215);
-            btnSalvar.Click += BtnSalvar_Click;
-
-            Controls.Add(btnSalvar);
-            AcceptButton = btnSalvar;
-            CancelButton = btnCancelar;
-        }
-
-        // =========================================================
-        // SALVAR
-        // =========================================================
-
-        private void BtnSalvar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtNome.Text))
-            {
-                MessageBox.Show("Informe o nome da categoria.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNome.Focus();
-                return;
-            }
-
-            Nome = txtNome.Text.Trim();
-            Descricao = txtDescricao.Text.Trim();
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        // =========================================================
-        // LABEL
-        // =========================================================
-
-        private Label CriarLabel(string texto, int x, int y)
-        {
-            return new Label
-            {
-                Text = texto,
-                AutoSize = true,
-                Font = new Font("Segoe UI", 9.5F),
-                ForeColor = Color.FromArgb(60, 60, 60),
-                Location = new Point(x, y)
-            };
+            btn.FlatAppearance.BorderColor = Color.FromArgb(220, 220, 220);
+            btn.FlatAppearance.BorderSize = 1;
+            return btn;
         }
     }
 }

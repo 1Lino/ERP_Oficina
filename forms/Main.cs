@@ -11,8 +11,7 @@ public partial class FormMain : Form
     {
         InitializeComponent();
         // Ao abrir o app, carrega os dados de teste:
-        DadosMock.CriarDadosTesteClientes();
-        DadosMock.CriarDadosTesteEquipamento();
+        DadosMock.CarregarDadosTestes();
     }
 
     private void InitializeComponent()
@@ -146,6 +145,9 @@ public partial class FormMain : Form
                 equipamentos.Dock = DockStyle.Fill;
                 break;
             case "Produtos":
+                ProdutosControl produtos = new ProdutosControl();
+                pnlConteudo.Controls.Add(produtos);
+                produtos.Dock = DockStyle.Fill;
                 break;
             case "Categorias":
                 CategoriasControl categorias = new CategoriasControl();
@@ -153,10 +155,19 @@ public partial class FormMain : Form
                 categorias.Dock = DockStyle.Fill;
                 break;
             case "Serviços":
+                ServicosControl servicos = new ServicosControl();
+                pnlConteudo.Controls.Add(servicos);
+                servicos.Dock = DockStyle.Fill;
                 break;
             case "Ordens de Serviço":
+                OrdensServicoControl os = new OrdensServicoControl();
+                pnlConteudo.Controls.Add(os);
+                os.Dock = DockStyle.Fill;
                 break;
             case "Estoque":
+                EstoqueControl estoque = new EstoqueControl();
+                pnlConteudo.Controls.Add(estoque);
+                estoque.Dock = DockStyle.Fill;
                 break;
             case "Relatórios":
                 break;
