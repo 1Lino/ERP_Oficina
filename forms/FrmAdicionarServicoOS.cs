@@ -104,9 +104,9 @@ namespace ERP_Oficina.Forms
                 Location = new Point(25, 165),
                 Width = 180,
                 Height = 32,
-                Minimum = 0.01M,
+                Minimum = 1M,
                 Maximum = 9999M,
-                DecimalPlaces = 2,
+                DecimalPlaces = 0,
                 Increment = 1M,
                 Value = 1M
             };
@@ -231,7 +231,8 @@ namespace ERP_Oficina.Forms
 
             decimal preco = servico.PrecoBase;
 
-            decimal subtotal = preco * nudQuantidade.Value;
+            int quantidade = (int)nudQuantidade.Value;
+            decimal subtotal = preco * quantidade;
 
             lblPrecoUnitarioValor.Text = preco.ToString("C2");
 
@@ -260,7 +261,7 @@ namespace ERP_Oficina.Forms
                 return;
             }
 
-            decimal quantidade = nudQuantidade.Value;
+            int quantidade = (int)nudQuantidade.Value;
 
             decimal precoUnitario = servico.PrecoBase;
 

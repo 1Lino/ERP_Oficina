@@ -24,6 +24,9 @@ public static class DadosMock
         CriarMovimentacoesEstoque();
         CriarDadosTesteOrdensServico();
     }
+
+    // TODO: todos os dados criados manualmente aqui nesta classe poderiam estar cada qual em um JSON separado, daí 
+    // bastava apenas criar um loop que itera sobre os itens do JSON e os converte em uma lista dos tipos usado aqui.
     public static void CriarDadosTesteClientes()
     {
         Clientes.Clear();
@@ -780,15 +783,13 @@ public static class DadosMock
             EquipamentoNome = Equipamentos.FirstOrDefault(x => x.Id == 1).Descricao,
             ResponsavelNome = "Administrador",
 
-            DataAbertura =
-                new DateTime(2026, 8, 5, 9, 30, 0),
+            DataAbertura = new DateTime(2026, 8, 5, 9, 30, 0),
 
             DataFechamento = null,
 
             Status = "Em andamento",
 
-            Observacoes =
-                "Equipamento apresenta falhas intermitentes ao ligar."
+            Observacoes = "Equipamento apresenta falhas intermitentes ao ligar."
         };
 
         OrdensServico.Add(os1);
@@ -797,8 +798,7 @@ public static class DadosMock
         // SERVIÇO DA OS 1
         // =========================================================
 
-        Servico servico1 =
-            Servicos.FirstOrDefault(x => x.Id == 1);
+        Servico servico1 = Servicos.FirstOrDefault(x => x.Id == 1);
 
         if (servico1 != null)
         {
@@ -815,11 +815,9 @@ public static class DadosMock
 
                     Quantidade = 1,
 
-                    PrecoUnitario =
-                        servico1.PrecoBase,
+                    PrecoUnitario = servico1.PrecoBase,
 
-                    Subtotal =
-                        servico1.PrecoBase
+                    Subtotal = servico1.PrecoBase
                 }
             );
         }
@@ -828,12 +826,11 @@ public static class DadosMock
         // MATERIAL DA OS 1
         // =========================================================
 
-        Produto produto1 =
-            Produtos.FirstOrDefault(x => x.Id == 1);
+        Produto produto1 = Produtos.FirstOrDefault(x => x.Id == 1);
 
         if (produto1 != null)
         {
-            decimal quantidade = 2;
+            int quantidade = 2;
 
             OrdensServicoMateriais.Add(
                 new OrdemServicoMaterial
@@ -848,11 +845,9 @@ public static class DadosMock
 
                     Quantidade = quantidade,
 
-                    PrecoUnitario =
-                        produto1.Preco,
+                    PrecoUnitario = produto1.Preco,
 
-                    Subtotal =
-                        quantidade * produto1.Preco
+                    Subtotal = quantidade * produto1.Preco
                 }
             );
 
@@ -863,8 +858,7 @@ public static class DadosMock
                 {
                     Id = 1,
 
-                    ProdutoId =
-                        produto1.Id,
+                    ProdutoId = produto1.Id,
 
                     UsuarioId = 1,
 
@@ -874,18 +868,9 @@ public static class DadosMock
 
                     Quantidade = quantidade,
 
-                    DataMovimento =
-                        new DateTime(
-                            2026,
-                            8,
-                            5,
-                            10,
-                            15,
-                            0
-                        ),
+                    DataMovimento = new DateTime(2026, 8, 5, 10, 15, 0),
 
-                    Observacao =
-                        "Material utilizado na OS #1"
+                    Observacao = "Material utilizado na OS #1"
                 }
             );
         }
@@ -906,22 +891,13 @@ public static class DadosMock
             EquipamentoNome = Equipamentos.FirstOrDefault(x => x.Id == 2).Descricao,
             ResponsavelNome = "Técnico",
 
-            DataAbertura =
-                new DateTime(
-                    2026,
-                    8,
-                    7,
-                    14,
-                    0,
-                    0
-                ),
+            DataAbertura = new DateTime(2026, 8, 7, 14, 0, 0),
 
             DataFechamento = null,
 
             Status = "Aberta",
 
-            Observacoes =
-                "Cliente solicita avaliação completa do equipamento."
+            Observacoes = "Cliente solicita avaliação completa do equipamento."
         };
 
         OrdensServico.Add(os2);
@@ -930,8 +906,7 @@ public static class DadosMock
         // SERVIÇO DA OS 2
         // =========================================================
 
-        Servico servico2 =
-            Servicos.FirstOrDefault(x => x.Id == 2);
+        Servico servico2 = Servicos.FirstOrDefault(x => x.Id == 2);
 
         if (servico2 != null)
         {
@@ -948,11 +923,9 @@ public static class DadosMock
 
                     Quantidade = 1,
 
-                    PrecoUnitario =
-                        servico2.PrecoBase,
+                    PrecoUnitario = servico2.PrecoBase,
 
-                    Subtotal =
-                        servico2.PrecoBase
+                    Subtotal = servico2.PrecoBase
                 }
             );
         }
@@ -973,30 +946,13 @@ public static class DadosMock
             EquipamentoNome = Equipamentos.FirstOrDefault(x => x.Id == 3).Descricao,
             ResponsavelNome = "Administrador",
 
-            DataAbertura =
-                new DateTime(
-                    2026,
-                    7,
-                    28,
-                    8,
-                    30,
-                    0
-                ),
+            DataAbertura = new DateTime(2026, 7, 28, 8, 30, 0),
 
-            DataFechamento =
-                new DateTime(
-                    2026,
-                    7,
-                    29,
-                    16,
-                    45,
-                    0
-                ),
+            DataFechamento = new DateTime(2026, 7, 29, 16, 45, 0),
 
             Status = "Concluída",
 
-            Observacoes =
-                "Manutenção realizada com sucesso."
+            Observacoes = "Manutenção realizada com sucesso."
         };
 
         OrdensServico.Add(os3);
@@ -1023,11 +979,9 @@ public static class DadosMock
 
                     Quantidade = 1,
 
-                    PrecoUnitario =
-                        servico3.PrecoBase,
+                    PrecoUnitario = servico3.PrecoBase,
 
-                    Subtotal =
-                        servico3.PrecoBase
+                    Subtotal = servico3.PrecoBase
                 }
             );
         }

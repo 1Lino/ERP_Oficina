@@ -110,9 +110,9 @@ namespace ERP_Oficina.Forms
                 Location = new Point(30, 230),
                 Width = 230,
                 Height = 32,
-                Minimum = 0.01m,
+                Minimum = 1m,
                 Maximum = 999999,
-                DecimalPlaces = 2,
+                DecimalPlaces = 0,
                 Increment = 1,
                 ThousandsSeparator = true
             };
@@ -241,7 +241,7 @@ namespace ERP_Oficina.Forms
                 return;
             }
 
-            lblEstoqueAtualValor.Text = produto.EstoqueAtual.ToString("N2");
+            lblEstoqueAtualValor.Text = produto.EstoqueAtual.ToString("N0");
         }
 
         // =========================================================
@@ -259,7 +259,7 @@ namespace ERP_Oficina.Forms
                 return;
             }
 
-            decimal quantidade = nudQuantidade.Value;
+            int quantidade = (int)nudQuantidade.Value;
 
             if (quantidade <= 0)
             {
@@ -275,8 +275,8 @@ namespace ERP_Oficina.Forms
                 return;
             }
 
-            decimal estoqueAnterior = produto.EstoqueAtual;
-            decimal novoEstoque = estoqueAnterior;
+            int estoqueAnterior = produto.EstoqueAtual;
+            int novoEstoque = estoqueAnterior;
 
             switch (tipoMovimento)
             {

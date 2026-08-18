@@ -263,13 +263,18 @@ namespace ERP_Oficina.Forms
 
             dgvServicos = CriarGrid();
             dgvServicos.Location = new Point(25, 70);
-            dgvServicos.Size = new Size(870, 390);
+            dgvServicos.Size = new Size(150, 390);
             dgvServicos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
-            dgvServicos.Columns.Add(CriarColuna("ServicoNome", "Serviço", 35));
+            dgvServicos.AllowUserToResizeRows = false;
+            dgvServicos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvServicos.ReadOnly = true;
+
+            dgvServicos.Columns.Add(CriarColuna("ServicoNome", "Serviço", 15)); // 35
             dgvServicos.Columns.Add(CriarColuna("Quantidade", "Qtd.", 12));
-            dgvServicos.Columns.Add(CriarColuna("PrecoUnitario", "Valor unitário", 20, "C2"));
-            dgvServicos.Columns.Add(CriarColuna("Subtotal", "Subtotal", 20, "C2"));
+            dgvServicos.Columns.Add(CriarColuna("PrecoUnitario", "Valor unitário", 15, "C2"));
+            dgvServicos.Columns.Add(CriarColuna("Subtotal", "Subtotal", 15, "C2"));
+
 
             lblTotalServicos = new Label
             {
@@ -370,13 +375,17 @@ namespace ERP_Oficina.Forms
 
             dgvMateriais = CriarGrid();
             dgvMateriais.Location = new Point(25, 70);
-            dgvMateriais.Size = new Size(870, 390);
+            dgvMateriais.Size = new Size(150, 390);
             dgvMateriais.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
-            dgvMateriais.Columns.Add(CriarColuna("ProdutoNome", "Produto", 35));
+            dgvMateriais.AllowUserToResizeRows = false;
+            dgvMateriais.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvMateriais.ReadOnly = true;
+
+            dgvMateriais.Columns.Add(CriarColuna("ProdutoNome", "Produto", 15)); // 35
             dgvMateriais.Columns.Add(CriarColuna("Quantidade", "Qtd.", 12));
-            dgvMateriais.Columns.Add(CriarColuna("PrecoUnitario", "Valor unitário", 20, "C2"));
-            dgvMateriais.Columns.Add(CriarColuna("Subtotal", "Subtotal", 20, "C2"));
+            dgvMateriais.Columns.Add(CriarColuna("PrecoUnitario", "Valor unitário", 15, "C2"));
+            dgvMateriais.Columns.Add(CriarColuna("Subtotal", "Subtotal", 15, "C2"));
 
             lblTotalMateriais = new Label
             {
@@ -429,7 +438,6 @@ namespace ERP_Oficina.Forms
         // =========================================================
         // REMOVER MATERIAL
         // =========================================================
-
         private void BtnRemoverMaterial_Click(object sender, EventArgs e)
         {
             if (dgvMateriais.CurrentRow == null)
@@ -449,11 +457,32 @@ namespace ERP_Oficina.Forms
                 MessageBoxIcon.Question);
 
             if (resposta != DialogResult.Yes)
-            {
                 return;
+
+            // como OrdemServicoMaterial item possui o id do produto em questão, podemos acessar a base do estoque Produtos e 
+            // selecionar o item em questão, para então consequentemente devolver este item ao estoque de acordo com a quantidade
+            // que foi removida.
+            var produto = DadosMock.Produtos.FirstOrDefault(p => p.Id == item.ProdutoId);
+            if (produto != null)
+            {
+                produto.EstoqueAtual += item.Quantidade; // ex.: se removi 2 qtd de um item, essa quantia é devolvida ao estoque.
             }
 
             DadosMock.OrdensServicoMateriais.Remove(item);
+
+            DadosMock.MovimentacoesEstoque.Add(new MovimentacaoEstoque
+            {
+                Id = DadosMock.MovimentacoesEstoque.Count == 0 ? 1 : DadosMock.MovimentacoesEstoque.Max(x => x.Id) + 1,
+                ProdutoId = item.ProdutoId,
+                UsuarioId = 1,
+                OrdemServicoId = item.OrdemServicoId,
+                TipoMovimento = "Entrada",
+                Quantidade = item.Quantidade,
+                DataMovimento = DateTime.Now,
+                Observacao = $"Devolução de material da OS #{item.OrdemServicoId}"
+            });
+
+            AtualizarTotaisOrdemServico();
             CarregarMateriais();
         }
 
@@ -465,6 +494,10 @@ namespace ERP_Oficina.Forms
         {
             dgvHistorico = CriarGrid();
             dgvHistorico.Dock = DockStyle.Fill;
+
+            dgvHistorico.AllowUserToResizeRows = false;
+            dgvHistorico.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvHistorico.ReadOnly = true;
 
             dgvHistorico.Columns.Add(CriarColuna("DataAlteracao", "Data", 18, "dd/MM/yyyy HH:mm"));
             dgvHistorico.Columns.Add(CriarColuna("UsuarioNome", "Usuário", 20));
@@ -490,20 +523,20 @@ namespace ERP_Oficina.Forms
             dgvHistorico.DataSource = historico;
         }
 
-        // private void AtualizarTotaisOrdemServico()
-        // {
-        //     ordem.ValorServicos =
-        //         DadosMock.OrdensServicoServicos
-        //             .Where(x => x.OrdemServicoId == ordem.Id)
-        //             .Sum(x => x.Subtotal);
-        //
-        //     ordem.ValorMateriais =
-        //         DadosMock.OrdensServicoMateriais
-        //             .Where(x => x.OrdemServicoId == ordem.Id)
-        //             .Sum(x => x.Subtotal);
-        //
-        //     ordem.ValorTotal = ordem.ValorServicos + ordem.ValorMateriais;
-        // }
+        private void AtualizarTotaisOrdemServico()
+        {
+            ordem.ValorServicos =
+                DadosMock.OrdensServicoServicos
+                    .Where(x => x.OrdemServicoId == ordem.Id)
+                    .Sum(x => x.Subtotal);
+
+            ordem.ValorMateriais =
+                DadosMock.OrdensServicoMateriais
+                    .Where(x => x.OrdemServicoId == ordem.Id)
+                    .Sum(x => x.Subtotal);
+
+            ordem.ValorTotal = ordem.ValorServicos + ordem.ValorMateriais;
+        }
 
         // =========================================================
         // GRID

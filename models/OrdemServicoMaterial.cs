@@ -8,7 +8,7 @@ public class OrdemServicoMaterial
 
     public string ProdutoNome { get; set; }
 
-    public decimal Quantidade { get; set; }
+    public int Quantidade { get; set; } // old: decimal
 
     public decimal PrecoUnitario { get; set; }
 

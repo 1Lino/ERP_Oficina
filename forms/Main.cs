@@ -7,11 +7,28 @@ public partial class FormMain : Form
     private Panel pnlTopo;
     private Panel pnlMenu;
     private Panel pnlConteudo;
+
+    private string[] menus =
+    {
+        "Dashboard",
+        "Clientes",
+        "Equipamentos",
+        "Produtos",
+        "Categorias",
+        "Serviços",
+        "Ordens de Serviço",
+        "Estoque",
+        "Relatórios",
+        "Usuários",
+        "Configurações"
+    };
+
     public FormMain()
     {
         InitializeComponent();
         // Ao abrir o app, carrega os dados de teste:
         DadosMock.CarregarDadosTestes();
+        LoadPanel(new OrdensServicoControl());
     }
 
     private void InitializeComponent()
@@ -63,21 +80,6 @@ public partial class FormMain : Form
             BackColor = Color.FromArgb(45, 55, 72)
         };
 
-        string[] menus =
-        {
-            "Dashboard",
-            "Clientes",
-            "Equipamentos",
-            "Produtos",
-            "Categorias",
-            "Serviços",
-            "Ordens de Serviço",
-            "Estoque",
-            "Relatórios",
-            "Usuários",
-            "Configurações"
-        };
-
         foreach (string item in menus)
         {
             Button btn = new Button
@@ -127,55 +129,31 @@ public partial class FormMain : Form
         Controls.Add(pnlTopo);
     }
 
-    private void CallPanel(string menu)
+    private void CallPanel(string menuName)
     {
         pnlConteudo.Controls.Clear();
-        switch (menu)
-        {
-            case "Dashboard":
-                break;
-            case "Clientes":
-                ClientesControl clientes = new ClientesControl();
-                pnlConteudo.Controls.Add(clientes);
-                clientes.Dock = DockStyle.Fill;
-                break;
-            case "Equipamentos":
-                EquipamentosControl equipamentos = new EquipamentosControl();
-                pnlConteudo.Controls.Add(equipamentos);
-                equipamentos.Dock = DockStyle.Fill;
-                break;
-            case "Produtos":
-                ProdutosControl produtos = new ProdutosControl();
-                pnlConteudo.Controls.Add(produtos);
-                produtos.Dock = DockStyle.Fill;
-                break;
-            case "Categorias":
-                CategoriasControl categorias = new CategoriasControl();
-                pnlConteudo.Controls.Add(categorias);
-                categorias.Dock = DockStyle.Fill;
-                break;
-            case "Serviços":
-                ServicosControl servicos = new ServicosControl();
-                pnlConteudo.Controls.Add(servicos);
-                servicos.Dock = DockStyle.Fill;
-                break;
-            case "Ordens de Serviço":
-                OrdensServicoControl os = new OrdensServicoControl();
-                pnlConteudo.Controls.Add(os);
-                os.Dock = DockStyle.Fill;
-                break;
-            case "Estoque":
-                EstoqueControl estoque = new EstoqueControl();
-                pnlConteudo.Controls.Add(estoque);
-                estoque.Dock = DockStyle.Fill;
-                break;
-            case "Relatórios":
-                break;
-            case "Usuários":
-                break;
-            case "Configurações":
-                break;
 
-        }
+        var MenuHandler = new List<KeyValuePair<string, UserControl>>
+        {
+            new(menus[1], new ClientesControl()),
+            new(menus[2], new EquipamentosControl()),
+            new(menus[3], new ProdutosControl()),
+            new(menus[4], new CategoriasControl()),
+            new(menus[5], new ServicosControl()),
+            new(menus[6], new OrdensServicoControl()),
+            new(menus[7], new EstoqueControl())
+        };
+
+        // checa se MenuHandler tem algum item cuja key equivala ao texto contido em 'menu', e então puxa o valor dessa key.
+        // retorna um erro caso não encontre nada, pois LoadPanel iria carregar um componente inválido para sua operação.
+        UserControl selectedMenu = MenuHandler.First(option => option.Key == menuName).Value;
+
+        LoadPanel(selectedMenu);
+    }
+
+    private void LoadPanel(UserControl control)
+    {
+        pnlConteudo.Controls.Add(control);
+        control.Dock = DockStyle.Fill;
     }
 }

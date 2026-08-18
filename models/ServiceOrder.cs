@@ -12,6 +12,6 @@ public class OrdemServico
     public string Observacoes { get; set; }
     public decimal ValorMateriais { get; internal set; }
     public decimal ValorServicos { get; internal set; }
-    public decimal ValorTotal { get; internal set; }
+    public decimal ValorTotal { get; internal set; } // valor dos materiais + valor dos serviços
     public DateTime? DataFechamento { get; internal set; }
 }

@@ -5,7 +5,7 @@ public class MovimentacaoEstoque
     public int UsuarioId { get; set; }
     public int? OrdemServicoId { get; set; }
     public string TipoMovimento { get; set; }
-    public decimal Quantidade { get; set; }
+    public int Quantidade { get; set; }
     public DateTime DataMovimento { get; set; }
     public string Observacao { get; set; }
 }

@@ -114,9 +114,9 @@ namespace ERP_Oficina.Forms
                 Location = new Point(235, 165),
                 Width = 200,
                 Height = 32,
-                Minimum = 0.01M,
+                Minimum = 1M,
                 Maximum = 999999M,
-                DecimalPlaces = 2,
+                DecimalPlaces = 0,
                 Increment = 1M,
                 Value = 1M
             };
@@ -237,8 +237,9 @@ namespace ERP_Oficina.Forms
             if (produto == null)
                 return;
 
-            decimal subtotal = produto.Preco * nudQuantidade.Value;
-            lblEstoqueValor.Text = produto.EstoqueAtual.ToString("N2");
+            int quantidade = (int)nudQuantidade.Value;
+            decimal subtotal = produto.Preco * quantidade;
+            lblEstoqueValor.Text = produto.EstoqueAtual.ToString("N0");
             lblPrecoUnitarioValor.Text = produto.Preco.ToString("C2");
             lblSubtotalValor.Text = subtotal.ToString("C2");
         }
@@ -265,7 +266,7 @@ namespace ERP_Oficina.Forms
                 return;
             }
 
-            decimal quantidade = nudQuantidade.Value;
+            int quantidade = (int)nudQuantidade.Value;
 
             if (quantidade <= 0)
             {
@@ -313,7 +314,7 @@ namespace ERP_Oficina.Forms
 
             DadosMock.OrdensServicoMateriais.Add(item);
 
-            produto.EstoqueAtual -= quantidade;
+            produto.EstoqueAtual -= quantidade; // NOTE!
             DialogResult = DialogResult.OK;
 
             // Registra a movimentação de estoque

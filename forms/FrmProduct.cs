@@ -24,7 +24,7 @@ namespace ERP_Oficina.Forms
         public string SKU { get; private set; }
         public int CategoriaId { get; private set; }
         public string CategoriaNome { get; private set; }
-        public decimal EstoqueAtual { get; private set; }
+        public int EstoqueAtual { get; private set; }
         public decimal Preco { get; private set; }
         public bool Ativo { get; private set; }
 
@@ -145,7 +145,7 @@ namespace ERP_Oficina.Forms
                 Height = 30,
                 Minimum = 0,
                 Maximum = 999999,
-                DecimalPlaces = 2,
+                DecimalPlaces = 0,
                 Increment = 1
             };
             Controls.Add(lblEstoque);
@@ -276,7 +276,7 @@ namespace ERP_Oficina.Forms
             SKU = sku;
             CategoriaId = categoria.Id;
             CategoriaNome = categoria.Nome;
-            EstoqueAtual = nudEstoque.Value;
+            EstoqueAtual = (int)nudEstoque.Value;
             Preco = nudPreco.Value;
             Ativo = chkAtivo.Checked;
 
