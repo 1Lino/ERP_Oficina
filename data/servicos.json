@@ -1,0 +1,142 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Manutenção Preventiva",
+    "Descricao": "Limpeza, inspeção e revisão geral do equipamento.",
+    "PrecoBase": 150.00,
+    "Ativo": true
+  },
+  {
+    "Id": 2,
+    "Nome": "Formatação",
+    "Descricao": "Formatação do sistema operacional e instalação dos componentes básicos.",
+    "PrecoBase": 120.00,
+    "Ativo": true
+  },
+  {
+    "Id": 3,
+    "Nome": "Instalação de Sistema Operacional",
+    "Descricao": "Instalação e configuração do sistema operacional.",
+    "PrecoBase": 180.00,
+    "Ativo": true
+  },
+  {
+    "Id": 4,
+    "Nome": "Limpeza Interna",
+    "Descricao": "Limpeza interna, remoção de poeira e aplicação de pasta térmica.",
+    "PrecoBase": 90.00,
+    "Ativo": true
+  },
+  {
+    "Id": 5,
+    "Nome": "Troca de Pasta Térmica",
+    "Descricao": "Remoção da pasta térmica antiga e aplicação de nova pasta térmica.",
+    "PrecoBase": 70.00,
+    "Ativo": true
+  },
+  {
+    "Id": 6,
+    "Nome": "Instalação de SSD",
+    "Descricao": "Instalação física e configuração de unidade SSD.",
+    "PrecoBase": 100.00,
+    "Ativo": true
+  },
+  {
+    "Id": 7,
+    "Nome": "Instalação de Memória RAM",
+    "Descricao": "Instalação e configuração de novos módulos de memória.",
+    "PrecoBase": 60.00,
+    "Ativo": true
+  },
+  {
+    "Id": 8,
+    "Nome": "Configuração de Rede",
+    "Descricao": "Configuração de conexão de rede cabeada ou Wi-Fi.",
+    "PrecoBase": 130.00,
+    "Ativo": true
+  },
+  {
+    "Id": 9,
+    "Nome": "Configuração de Impressora",
+    "Descricao": "Instalação de drivers e configuração da impressora no computador.",
+    "PrecoBase": 80.00,
+    "Ativo": true
+  },
+  {
+    "Id": 10,
+    "Nome": "Diagnóstico de Hardware",
+    "Descricao": "Análise do equipamento para identificação de falhas de hardware.",
+    "PrecoBase": 100.00,
+    "Ativo": true
+  },
+  {
+    "Id": 11,
+    "Nome": "Diagnóstico de Software",
+    "Descricao": "Análise do sistema para identificação de erros e problemas de software.",
+    "PrecoBase": 80.00,
+    "Ativo": true
+  },
+  {
+    "Id": 12,
+    "Nome": "Recuperação de Dados",
+    "Descricao": "Tentativa de recuperação de arquivos de unidades de armazenamento.",
+    "PrecoBase": 250.00,
+    "Ativo": true
+  },
+  {
+    "Id": 13,
+    "Nome": "Remoção de Vírus",
+    "Descricao": "Análise e remoção de vírus, malware e softwares indesejados.",
+    "PrecoBase": 120.00,
+    "Ativo": true
+  },
+  {
+    "Id": 14,
+    "Nome": "Configuração de Backup",
+    "Descricao": "Configuração de rotina de backup dos arquivos do cliente.",
+    "PrecoBase": 150.00,
+    "Ativo": true
+  },
+  {
+    "Id": 15,
+    "Nome": "Manutenção em Notebook",
+    "Descricao": "Manutenção geral em notebook, incluindo desmontagem e inspeção.",
+    "PrecoBase": 200.00,
+    "Ativo": true
+  },
+  {
+    "Id": 16,
+    "Nome": "Manutenção em Computador",
+    "Descricao": "Manutenção geral em computador desktop.",
+    "PrecoBase": 180.00,
+    "Ativo": true
+  },
+  {
+    "Id": 17,
+    "Nome": "Atualização de BIOS",
+    "Descricao": "Atualização e configuração da BIOS/UEFI da placa-mãe.",
+    "PrecoBase": 120.00,
+    "Ativo": true
+  },
+  {
+    "Id": 18,
+    "Nome": "Montagem de Computador",
+    "Descricao": "Montagem completa do computador a partir dos componentes fornecidos.",
+    "PrecoBase": 300.00,
+    "Ativo": true
+  },
+  {
+    "Id": 19,
+    "Nome": "Otimização do Sistema",
+    "Descricao": "Otimização do sistema operacional e dos programas instalados.",
+    "PrecoBase": 100.00,
+    "Ativo": false
+  },
+  {
+    "Id": 20,
+    "Nome": "Instalação de Software",
+    "Descricao": "Instalação e configuração de software solicitado pelo cliente.",
+    "PrecoBase": 60.00,
+    "Ativo": false
+  }
+]

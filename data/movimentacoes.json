@@ -1,0 +1,74 @@
+[
+  {
+    "Id": 1,
+    "ProdutoId": 1,
+    "UsuarioId": 1,
+    "TipoMovimento": "Entrada",
+    "Quantidade": 10,
+    "DataMovimento": "2026-07-01",
+    "Observacao": "Compra de mercadoria"
+  },
+  {
+    "Id": 2,
+    "ProdutoId": 2,
+    "UsuarioId": 1,
+    "TipoMovimento": "Entrada",
+    "Quantidade": 30,
+    "DataMovimento": "2026-07-03",
+    "Observacao": "Reposição de estoque"
+  },
+  {
+    "Id": 3,
+    "ProdutoId": 3,
+    "UsuarioId": 1,
+    "TipoMovimento": "Saída",
+    "Quantidade": 5,
+    "DataMovimento": "2026-07-06",
+    "Observacao": "Utilização em ordem de serviço"
+  },
+  {
+    "Id": 4,
+    "ProdutoId": 4,
+    "UsuarioId": 1,
+    "TipoMovimento": "Entrada",
+    "Quantidade": 20,
+    "DataMovimento": "2026-07-09",
+    "Observacao": "Compra de mercadoria"
+  },
+  {
+    "Id": 5,
+    "ProdutoId": 6,
+    "UsuarioId": 1,
+    "TipoMovimento": "Saída",
+    "Quantidade": 8,
+    "DataMovimento": "2026-07-11",
+    "Observacao": "Material utilizado em serviço"
+  },
+  {
+    "Id": 6,
+    "ProdutoId": 8,
+    "UsuarioId": 1,
+    "TipoMovimento": "Entrada",
+    "Quantidade": 10,
+    "DataMovimento": "2026-07-13",
+    "Observacao": "Reposição de estoque"
+  },
+  {
+    "Id": 7,
+    "ProdutoId": 9,
+    "UsuarioId": 1,
+    "TipoMovimento": "Saída",
+    "Quantidade": 4,
+    "DataMovimento": "2026-07-16",
+    "Observacao": "Utilização em ordem de serviço"
+  },
+  {
+    "Id": 8,
+    "ProdutoId": 11,
+    "UsuarioId": 1,
+    "TipoMovimento": "Saída",
+    "Quantidade": 10,
+    "DataMovimento": "2026-07-18",
+    "Observacao": "Material utilizado em serviço"
+  }
+]

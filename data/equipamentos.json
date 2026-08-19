@@ -1,0 +1,137 @@
+[
+  {
+    "Id": 1,
+    "ClienteId": 1,
+    "Descricao": "Notebook pessoal",
+    "Marca": "Dell",
+    "Modelo": "Inspiron 15",
+    "NumeroSerie": "DELL001234",
+    "DataCadastro": "2026-07-10"
+  },
+  {
+    "Id": 2,
+    "ClienteId": 2,
+    "Descricao": "Impressora",
+    "Marca": "HP",
+    "Modelo": "LaserJet M15",
+    "NumeroSerie": "HP002345",
+    "DataCadastro": "2026-07-12"
+  },
+  {
+    "Id": 3,
+    "ClienteId": 3,
+    "Descricao": "Notebook de trabalho",
+    "Marca": "Samsung",
+    "Modelo": "Galaxy Book",
+    "NumeroSerie": "SAM003456",
+    "DataCadastro": "2026-07-14"
+  },
+  {
+    "Id": 4,
+    "ClienteId": 4,
+    "Descricao": "Computador Desktop",
+    "Marca": "Lenovo",
+    "Modelo": "ThinkCentre",
+    "NumeroSerie": "LEN004567",
+    "DataCadastro": "2026-07-15"
+  },
+  {
+    "Id": 5,
+    "ClienteId": 5,
+    "Descricao": "Notebook",
+    "Marca": "Acer",
+    "Modelo": "Aspire 5",
+    "NumeroSerie": "ACE005678",
+    "DataCadastro": "2026-07-17"
+  },
+  {
+    "Id": 6,
+    "ClienteId": 6,
+    "Descricao": "Computador Desktop",
+    "Marca": "Dell",
+    "Modelo": "OptiPlex 3080",
+    "NumeroSerie": "DELL006789",
+    "DataCadastro": "2026-07-18"
+  },
+  {
+    "Id": 7,
+    "ClienteId": 7,
+    "Descricao": "Impressora Multifuncional",
+    "Marca": "Epson",
+    "Modelo": "EcoTank L3250",
+    "NumeroSerie": "EPS007890",
+    "DataCadastro": "2026-07-20"
+  },
+  {
+    "Id": 8,
+    "ClienteId": 8,
+    "Descricao": "Notebook",
+    "Marca": "Lenovo",
+    "Modelo": "IdeaPad 3",
+    "NumeroSerie": "LEN008901",
+    "DataCadastro": "2026-07-21"
+  },
+  {
+    "Id": 9,
+    "ClienteId": 9,
+    "Descricao": "Impressora",
+    "Marca": "Brother",
+    "Modelo": "DCP-L2540DW",
+    "NumeroSerie": "BRO009012",
+    "DataCadastro": "2026-07-23"
+  },
+  {
+    "Id": 10,
+    "ClienteId": 10,
+    "Descricao": "Notebook",
+    "Marca": "Asus",
+    "Modelo": "VivoBook 15",
+    "NumeroSerie": "ASU010123",
+    "DataCadastro": "2026-07-25"
+  },
+  {
+    "Id": 11,
+    "ClienteId": 11,
+    "Descricao": "Computador Desktop",
+    "Marca": "HP",
+    "Modelo": "ProDesk 400",
+    "NumeroSerie": "HP011234",
+    "DataCadastro": "2026-07-27"
+  },
+  {
+    "Id": 12,
+    "ClienteId": 12,
+    "Descricao": "Notebook",
+    "Marca": "Dell",
+    "Modelo": "Vostro 3510",
+    "NumeroSerie": "DELL012345",
+    "DataCadastro": "2026-07-28"
+  },
+  {
+    "Id": 13,
+    "ClienteId": 1,
+    "Descricao": "Monitor",
+    "Marca": "LG",
+    "Modelo": "24MP400",
+    "NumeroSerie": "LG013456",
+    "DataCadastro": "2026-07-30"
+  },
+  {
+    "Id": 14,
+    "ClienteId": 4,
+    "Descricao": "Notebook",
+    "Marca": "Acer",
+    "Modelo": "Nitro 5",
+    "NumeroSerie": "ACE014567",
+    "DataCadastro": "2026-08-01"
+  },
+  {
+    "Id": 15,
+    "ClienteId": 8,
+    "Descricao": "Monitor",
+    "Marca": "Samsung",
+    "Modelo": "T350",
+    "NumeroSerie": "SAM015678",
+    "DataCadastro": "2026-08-02"
+  }
+]

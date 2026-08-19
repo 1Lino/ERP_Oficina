@@ -1,0 +1,62 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Informática",
+    "Descricao": "Computadores, notebooks e periféricos."
+  },
+  {
+    "Id": 2,
+    "Nome": "Eletrônicos",
+    "Descricao": "Equipamentos e componentes eletrônicos."
+  },
+  {
+    "Id": 3,
+    "Nome": "Ferramentas",
+    "Descricao": "Ferramentas manuais e elétricas."
+  },
+  {
+    "Id": 4,
+    "Nome": "Acessórios",
+    "Descricao": "Cabos, adaptadores, conectores e acessórios."
+  },
+  {
+    "Id": 5,
+    "Nome": "Peças de Reposição",
+    "Descricao": "Peças utilizadas na manutenção de equipamentos."
+  },
+  {
+    "Id": 6,
+    "Nome": "Componentes",
+    "Descricao": "Componentes para montagem e manutenção."
+  },
+  {
+    "Id": 7,
+    "Nome": "Materiais de Consumo",
+    "Descricao": "Materiais utilizados durante os serviços."
+  },
+  {
+    "Id": 8,
+    "Nome": "Redes",
+    "Descricao": "Equipamentos e acessórios para redes."
+  },
+  {
+    "Id": 9,
+    "Nome": "Armazenamento",
+    "Descricao": "HDs, SSDs, pendrives e dispositivos de armazenamento."
+  },
+  {
+    "Id": 10,
+    "Nome": "Impressão",
+    "Descricao": "Impressoras, cartuchos e suprimentos."
+  },
+  {
+    "Id": 11,
+    "Nome": "Telefonia",
+    "Descricao": "Equipamentos e acessórios de telefonia."
+  },
+  {
+    "Id": 12,
+    "Nome": "Outros",
+    "Descricao": "Produtos que não se enquadram nas demais categorias."
+  }
+]

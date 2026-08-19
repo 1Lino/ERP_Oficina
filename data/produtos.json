@@ -1,0 +1,134 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Notebook Dell Inspiron",
+    "SKU": "NOTE-DELL-001",
+    "CategoriaId": 1,
+    "CategoriaNome": "Informática",
+    "EstoqueAtual": 8,
+    "Preco": 3499.90,
+    "Ativo": true,
+    "DataCadastro": "2026-06-18"
+  },
+  {
+    "Id": 2,
+    "Nome": "Mouse Logitech M170",
+    "SKU": "MOUSE-LOG-001",
+    "CategoriaId": 1,
+    "CategoriaNome": "Informática",
+    "EstoqueAtual": 25,
+    "Preco": 79.90,
+    "Ativo": true,
+    "DataCadastro": "2026-06-23"
+  },
+  {
+    "Id": 3,
+    "Nome": "Teclado Mecânico Redragon",
+    "SKU": "TEC-RED-001",
+    "CategoriaId": 1,
+    "CategoriaNome": "Informática",
+    "EstoqueAtual": 12,
+    "Preco": 249.90,
+    "Ativo": true,
+    "DataCadastro": "2026-06-28"
+  },
+  {
+    "Id": 4,
+    "Nome": "SSD Kingston 480GB",
+    "SKU": "SSD-KNG-480",
+    "CategoriaId": 9,
+    "CategoriaNome": "Armazenamento",
+    "EstoqueAtual": 15,
+    "Preco": 289.90,
+    "Ativo": true,
+    "DataCadastro": "2026-06-30"
+  },
+  {
+    "Id": 5,
+    "Nome": "HD Externo Seagate 1TB",
+    "SKU": "HD-SEA-1TB",
+    "CategoriaId": 9,
+    "CategoriaNome": "Armazenamento",
+    "EstoqueAtual": 7,
+    "Preco": 399.90,
+    "Ativo": true,
+    "DataCadastro": "2026-07-03"
+  },
+  {
+    "Id": 6,
+    "Nome": "Cabo HDMI 2.0",
+    "SKU": "CAB-HDMI-002",
+    "CategoriaId": 4,
+    "CategoriaNome": "Acessórios",
+    "EstoqueAtual": 40,
+    "Preco": 39.90,
+    "Ativo": true,
+    "DataCadastro": "2026-07-07"
+  },
+  {
+    "Id": 7,
+    "Nome": "Adaptador USB Wi-Fi",
+    "SKU": "USB-WIFI-001",
+    "CategoriaId": 8,
+    "CategoriaNome": "Redes",
+    "EstoqueAtual": 18,
+    "Preco": 89.90,
+    "Ativo": true,
+    "DataCadastro": "2026-07-10"
+  },
+  {
+    "Id": 8,
+    "Nome": "Fonte ATX 500W",
+    "SKU": "FONTE-ATX-500",
+    "CategoriaId": 6,
+    "CategoriaNome": "Componentes",
+    "EstoqueAtual": 6,
+    "Preco": 279.90,
+    "Ativo": true,
+    "DataCadastro": "2026-07-12"
+  },
+  {
+    "Id": 9,
+    "Nome": "Memória RAM 8GB DDR4",
+    "SKU": "RAM-DDR4-8GB",
+    "CategoriaId": 6,
+    "CategoriaNome": "Componentes",
+    "EstoqueAtual": 14,
+    "Preco": 159.90,
+    "Ativo": true,
+    "DataCadastro": "2026-07-15"
+  },
+  {
+    "Id": 10,
+    "Nome": "Cartucho HP 667 Preto",
+    "SKU": "CART-HP667-P",
+    "CategoriaId": 10,
+    "CategoriaNome": "Impressão",
+    "EstoqueAtual": 4,
+    "Preco": 119.90,
+    "Ativo": true,
+    "DataCadastro": "2026-07-19"
+  },
+  {
+    "Id": 11,
+    "Nome": "Cabo de Rede CAT6",
+    "SKU": "CAB-CAT6-010",
+    "CategoriaId": 8,
+    "CategoriaNome": "Redes",
+    "EstoqueAtual": 0,
+    "Preco": 29.90,
+    "Ativo": true,
+    "DataCadastro": "2026-07-24"
+  },
+  {
+    "Id": 12,
+    "Nome": "Placa de Rede PCI Express",
+    "SKU": "NIC-PCI-001",
+    "CategoriaId": 8,
+    "CategoriaNome": "Redes",
+    "EstoqueAtual": 3,
+    "Preco": 139.90,
+    "Ativo": false,
+    "DataCadastro": "2026-08-02"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Administrador",
+    "Email": "admin@oficina.com",
+    "SenhaHash": "123456",
+    "Perfil": "Administrador",
+    "DataCriacao": "2026-01-10",
+    "Ativo": true
+  },
+  {
+    "Id": 2,
+    "Nome": "Carlos Silva",
+    "Email": "carlos@oficina.com",
+    "SenhaHash": "123456",
+    "Perfil": "Técnico",
+    "DataCriacao": "2026-02-05",
+    "Ativo": true
+  },
+  {
+    "Id": 3,
+    "Nome": "Mariana Souza",
+    "Email": "mariana@oficina.com",
+    "SenhaHash": "123456",
+    "Perfil": "Atendente",
+    "DataCriacao": "2026-03-12",
+    "Ativo": true
+  },
+  {
+    "Id": 4,
+    "Nome": "Rafael Oliveira",
+    "Email": "rafael@oficina.com",
+    "SenhaHash": "123456",
+    "Perfil": "Técnico",
+    "DataCriacao": "2026-04-18",
+    "Ativo": true
+  }
+]
