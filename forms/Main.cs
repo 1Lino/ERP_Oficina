@@ -28,7 +28,7 @@ public partial class FormMain : Form
         InitializeComponent();
         // Ao abrir o app, carrega os dados de teste:
         DadosMock.CarregarDadosTestes();
-        LoadPanel(new OrdensServicoControl());
+        LoadPanel(new DashboardControl());
     }
 
     private void InitializeComponent()
@@ -135,6 +135,7 @@ public partial class FormMain : Form
 
         var MenuHandler = new List<KeyValuePair<string, UserControl>>
         {
+            new(menus[0], new DashboardControl()),
             new(menus[1], new ClientesControl()),
             new(menus[2], new EquipamentosControl()),
             new(menus[3], new ProdutosControl()),

@@ -386,7 +386,8 @@ namespace ERP_Oficina.Controls
                 clientesFiltrados = DadosMock.Clientes.Where(
                     x => x.Nome.ToLower().Contains(pesquisa) ||
                     x.Cidade.ToLower().Contains(pesquisa) ||
-                    x.Telefone.ToLower().Contains(pesquisa))
+                    x.Telefone.ToLower().Contains(pesquisa) ||
+                    x.Status.ToLower().Contains(pesquisa))
                     .ToList();
             }
 

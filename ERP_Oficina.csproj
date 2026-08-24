@@ -6,7 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <!--Este grupo de itens deve ser adicionado aqui para que o caminho desses arquivos seja reconhecido para leitura na compilação do app. Sem isto, ocorreria um erro ao compilar o app, pois estes arquivos não seriam reconhecidos/copiados no output-->
+  <!--Este grupo de itens deve ser adicionado aqui para que o caminho desses arquivos seja reconhecido para leitura na compilação do app. Sem isto, ocorreria um erro ao compilar o app, pois estes arquivos não seriam reconhecidos/copiados no output automaticamente-->
   <ItemGroup>
     <None Update="data\clientes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
