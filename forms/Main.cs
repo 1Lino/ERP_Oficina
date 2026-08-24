@@ -142,12 +142,17 @@ public partial class FormMain : Form
             new(menus[4], new CategoriasControl()),
             new(menus[5], new ServicosControl()),
             new(menus[6], new OrdensServicoControl()),
-            new(menus[7], new EstoqueControl())
+            new(menus[7], new EstoqueControl()),
+            new(menus[8], new RelatoriosControl()),
+            new(menus[9], new UsuariosControl()),
+            new(menus[10], null) // null, por enquanto
         };
 
         // checa se MenuHandler tem algum item cuja key equivala ao texto contido em 'menu', e então puxa o valor dessa key.
         // retorna um erro caso não encontre nada, pois LoadPanel iria carregar um componente inválido para sua operação.
         UserControl selectedMenu = MenuHandler.First(option => option.Key == menuName).Value;
+
+        if (selectedMenu == null) return;
 
         LoadPanel(selectedMenu);
     }
