@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "99w6MG1GeGU=",
+  "dgSpecHash": "blTh2R3lx5I=",
   "success": true,
   "projectFilePath": "F:\\Dev Workspace\\APP Desktop Gestão de Oficina\\ERP_Oficina\\ERP_Oficina.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\carlo\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512"
+  ],
   "logs": []
 }

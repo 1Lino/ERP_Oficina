@@ -16,9 +16,15 @@ public static class DadosMock
     public static List<OrdemServicoMaterial> OrdensServicoMateriais { get; } = new();
     public static List<HistoricoOrdemServico> HistoricoOrdensServico { get; } = new();
 
-    public static void CarregarDadosTestes()
+    // Para o sistema simples de autenticação, os dados de usuários devem ser carregados em separado.
+    public static void CarregarUsuarios()
     {
         CriarDadosTeste<Usuario>(Usuarios, "usuarios");
+    }
+
+    public static void CarregarDadosTestes()
+    {
+        // CriarDadosTeste<Usuario>(Usuarios, "usuarios");
         CriarDadosTeste<Cliente>(Clientes, "clientes");
         CriarDadosTeste<Produto>(Produtos, "produtos");
         CriarDadosTeste<Equipamento>(Equipamentos, "equipamentos");
@@ -29,7 +35,7 @@ public static class DadosMock
         CriarDadosTesteOrdensServico();
     }
 
-    public static T ReadJson<T>(string caminho)
+    private static T ReadJson<T>(string caminho)
     {
         // AppContext.BaseDirectory é o diretório base do projeto, necessário para o caminho completo da leitura.
         // mas só funciona se o arquivo estiver copiado para o OutputDirectory do projeto, em ERP_Oficina.csproj.
@@ -41,7 +47,7 @@ public static class DadosMock
         return JsonSerializer.Deserialize<T>(json) ?? throw invalidData;
     }
 
-    public static void CriarDadosTeste<T>(List<T> Entidades, string arquivo)
+    private static void CriarDadosTeste<T>(List<T> Entidades, string arquivo)
     {
         Entidades.Clear();
         // @ para que o sistema entenda que \ não é comando.
@@ -50,7 +56,7 @@ public static class DadosMock
     }
 
     // TODO: Apesar de ser mais complexa, vou ver se tem como reduzir essa aqui para formato json. 
-    public static void CriarDadosTesteOrdensServico()
+    private static void CriarDadosTesteOrdensServico()
     {
 
         // Ordem de serviço 1:

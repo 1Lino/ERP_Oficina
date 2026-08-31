@@ -20,3 +20,6 @@ F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-wi
 F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\data\servicos.json
 F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\data\usuarios.json
 F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\data\movimentacoes.json
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Oficina.csproj.AssemblyReference.cache
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\bin\Debug\net10.0-windows\BCrypt-Net-Next.dll
+F:\Dev Workspace\APP Desktop Gestão de Oficina\ERP_Oficina\obj\Debug\net10.0-windows\ERP_Ofic.36B13769.Up2Date

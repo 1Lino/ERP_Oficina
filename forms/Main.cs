@@ -27,7 +27,7 @@ public partial class FormMain : Form
     {
         InitializeComponent();
         // Ao abrir o app, carrega os dados de teste:
-        DadosMock.CarregarDadosTestes();
+        // DadosMock.CarregarDadosTestes();
         LoadPanel(new DashboardControl());
     }
 
