@@ -4,9 +4,18 @@ namespace ERP_Oficina;
 public partial class Authenticator : Form
 {
     Button btn_login;
+    public static Usuario UsuarioAutenticado { get; private set; }
     public static Authenticator Instance { get; private set; }
     public static UsuarioRepository userRepo = new UsuarioRepository();
     public static AuthService authService = new AuthService(userRepo);
+
+    // NOTE: isto aqui é só um guia/lembrete das senhas dos usuários fictícios de usuarios.json, já que o json guarda somente os hashes.
+    List<string> senhas = [
+        "#blob123", // Marcos Oliveira | admin@oficina.com
+        "#mantis234", // Carlos Silva | carlos@oficina.com
+        "#latu456", // Mariana Souza | mariana@oficina.com
+        "#gob678" // Rafael Oliveira | rafael@oficina.com
+    ];
 
     public Authenticator()
     {
@@ -15,6 +24,9 @@ public partial class Authenticator : Form
         InitializeComponents();
         DadosMock.CarregarUsuarios();
         this.CenterToScreen();
+
+        // string senhaHash = BCryptHash.HashPassword(senhas[3]);
+        // Console.WriteLine(senhaHash);
     }
 
     // LOGIN FORM
@@ -117,10 +129,18 @@ public partial class Authenticator : Form
         Form formDialog = new Form
         {
             Text = "Cadastrar",
-            Size = new Size(350, 400),
+            Size = new Size(350, 450),
             FormBorderStyle = FormBorderStyle.FixedSingle,
             StartPosition = FormStartPosition.CenterScreen,
             MaximizeBox = false
+        };
+
+        Label lbl_nome = new Label
+        {
+            Width = 200,
+            Text = "Nome:",
+            Left = (formDialog.Width - 200) / 2,
+            Top = 20
         };
 
         Label lbl_email = new Label
@@ -128,7 +148,7 @@ public partial class Authenticator : Form
             Width = 200,
             Text = "E-Mail:",
             Left = (formDialog.Width - 200) / 2,
-            Top = 20
+            Top = 80
         };
 
         Label lbl_email_confirm = new Label
@@ -136,7 +156,7 @@ public partial class Authenticator : Form
             Width = 200,
             Text = "Confirme o E-Mail",
             Left = (formDialog.Width - 200) / 2,
-            Top = 80
+            Top = 140
         };
 
         Label lbl_senha = new Label
@@ -144,7 +164,7 @@ public partial class Authenticator : Form
             Width = 200,
             Text = "Senha",
             Left = (formDialog.Width - 200) / 2,
-            Top = 140
+            Top = 200
         };
 
         Label lbl_senha_confirm = new Label
@@ -152,35 +172,42 @@ public partial class Authenticator : Form
             Width = 200,
             Text = "Confirme a senha",
             Left = (formDialog.Width - 200) / 2,
-            Top = 200
+            Top = 260
         };
 
-        TextBox txt_email = new TextBox
+        TextBox txt_nome = new TextBox
         {
             Width = 200,
             Left = (formDialog.Width - 200) / 2,
             Top = 45
         };
 
-        TextBox txt_email_confirm = new TextBox
+        TextBox txt_email = new TextBox
         {
             Width = 200,
             Left = (formDialog.Width - 200) / 2,
             Top = 105
         };
 
-        TextBox txt_senha = new TextBox
+        TextBox txt_email_confirm = new TextBox
         {
             Width = 200,
             Left = (formDialog.Width - 200) / 2,
             Top = 165
         };
 
-        TextBox txt_senha_confirm = new TextBox
+        TextBox txt_senha = new TextBox
         {
             Width = 200,
             Left = (formDialog.Width - 200) / 2,
             Top = 225
+        };
+
+        TextBox txt_senha_confirm = new TextBox
+        {
+            Width = 200,
+            Left = (formDialog.Width - 200) / 2,
+            Top = 285
         };
 
         Button btn_cadastrar = new Button
@@ -188,16 +215,19 @@ public partial class Authenticator : Form
             Size = new Size(100, 30),
             Text = "Cadastrar",
             Left = (formDialog.Width - 100) / 2,
-            Top = 280,
+            Top = 345,
             Cursor = Cursors.Hand
         };
         btn_cadastrar.DialogResult = DialogResult.None;
 
         btn_cadastrar.Click += (_, _) =>
         {
-            btnCadastrar_Click(txt_email, txt_senha, authService);
+            btnCadastrar_Click(txt_nome, txt_email, txt_senha, authService);
             formDialog.Close();
         };
+
+        formDialog.Controls.Add(lbl_nome);
+        formDialog.Controls.Add(txt_nome);
 
         formDialog.Controls.Add(lbl_email);
         formDialog.Controls.Add(txt_email);
@@ -216,40 +246,35 @@ public partial class Authenticator : Form
         formDialog.ShowDialog();
     }
 
-    private void btnCadastrar_Click(TextBox txtLogin, TextBox txtSenha, AuthService auth)
+    private void btnCadastrar_Click(TextBox txtNome, TextBox txtLogin, TextBox txtSenha, AuthService auth)
     {
-        if (!Validator.CamposValidos(txtLogin.Text, txtSenha.Text))
+        if (!Validator.CamposValidos(txtNome.Text, txtLogin.Text, txtSenha.Text))
         {
             MessageBox.Show("Preencha todos os campos.");
             return;
         }
 
-        bool sucesso = auth.Cadastrar(txtLogin.Text, txtSenha.Text);
+        bool sucesso = auth.Cadastrar(txtNome.Text, txtLogin.Text, txtSenha.Text);
 
         MessageBox.Show(sucesso ? "Usuário cadastrado." : "Usuário já existe.");
     }
 
     private void btnLogin_Click(TextBox txtLogin, TextBox txtSenha, AuthService auth)
     {
-        bool sucesso = auth.Login(txtLogin.Text, txtSenha.Text);
-        if (sucesso)
+        AuthResponse autenticacao = auth.Login(txtLogin.Text, txtSenha.Text); // tenta fazer o login
+        if (autenticacao.sucesso)
         {
-            btn_login.DialogResult = DialogResult.OK;
-            var form = new FormMain();
-            form.ShowDialog();
-            Close(); // fecha tela de login
+            UsuarioAutenticado = autenticacao.usuario;
+            Console.WriteLine(UsuarioAutenticado.Nome);
+            DialogResult = DialogResult.OK;
+
+            Close();
         }
 
-        MessageBox.Show(sucesso ? "Login realizado." : "Login inválido.");
+        MessageBox.Show(autenticacao.sucesso ? "Login realizado." : "Login inválido.");
     }
 }
 
-// classe que confere todos os parâmetros básicos de cadastro do usuário. É o que deve ser registrado e salvo na base.
-// public class Usuarioo
-// {
-//     public string Login { get; set; }
-//     public string Senha { get; set; }
-// }
 
 // // Simulação da base de usuários. A camada de userRepository é uma camada de dados, somente acessada pelo backend da aplicação
 // // qualquer coisa só pode ser registrada nos dados se passar pelas validações e pelo processo de autenticação.
@@ -272,14 +297,16 @@ public class UsuarioRepository
 public class AuthService
 {
     private static UsuarioRepository Repository;
+    // public static Usuario UsuarioAutenticado { get; private set; }
 
     public AuthService(UsuarioRepository repository)
     {
         Repository = repository;
     }
 
-    public bool Cadastrar(string login, string senha)
+    public bool Cadastrar(string nome, string login, string senha)
     {
+        // verifica se já existe usuário com este email/login, pra impedir cadastro duplicado.
         if (Repository.Buscar(login) != null)
             return false;
 
@@ -288,6 +315,7 @@ public class AuthService
 
         Repository.Adicionar(new Usuario
         {
+            Nome = nome,
             Email = login,
             SenhaHash = hashPass
         });
@@ -295,20 +323,33 @@ public class AuthService
         return true;
     }
 
-    //"login" deve ser o email do usuário
-    public bool Login(string login, string senha)
+    public AuthResponse Login(string login, string senha)
     {
-        var usuario = Repository.Buscar(login);
+        var usuario = Repository.Buscar(login); // retorna o usuário correspondente ao email passado
 
-        return usuario != null && BCryptHash.Verify(senha, usuario.SenhaHash);
+        return new AuthResponse(usuario != null && BCryptHash.Verify(senha, usuario.SenhaHash), usuario);
+    }
+}
+
+// objeto simples pra controlar tanto o sucesso do login como o nome do usuário, já que preciso dos dois dados.
+public class AuthResponse
+{
+    public bool sucesso { get; private set; }
+    public Usuario usuario { get; private set; }
+    public AuthResponse(bool userExists, Usuario user)
+    {
+        sucesso = userExists;
+        usuario = user;
     }
 }
 
 // isto aqui lida com a validação dos campos.
 public class Validator
 {
-    public static bool CamposValidos(string login, string senha)
+    public static bool CamposValidos(string nome, string login, string senha)
     {
-        return !string.IsNullOrWhiteSpace(login) && !string.IsNullOrWhiteSpace(senha);
+        return !string.IsNullOrWhiteSpace(nome) &&
+               !string.IsNullOrWhiteSpace(login) &&
+               !string.IsNullOrWhiteSpace(senha);
     }
 }

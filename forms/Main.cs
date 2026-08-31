@@ -7,6 +7,7 @@ public partial class FormMain : Form
     private Panel pnlTopo;
     private Panel pnlMenu;
     private Panel pnlConteudo;
+    private Label lblUsuario;
 
     private string[] menus =
     {
@@ -23,11 +24,12 @@ public partial class FormMain : Form
         "Configurações"
     };
 
-    public FormMain()
+    public FormMain(Usuario usuarioAutenticado)
     {
         InitializeComponent();
-        // Ao abrir o app, carrega os dados de teste:
-        // DadosMock.CarregarDadosTestes();
+
+        lblUsuario.Text = $"{usuarioAutenticado.Nome} ({usuarioAutenticado.Perfil})";
+
         LoadPanel(new DashboardControl());
     }
 
@@ -58,15 +60,15 @@ public partial class FormMain : Form
             Location = new Point(20, 18)
         };
 
-        Label lblUsuario = new Label
+        lblUsuario = new Label
         {
-            Text = "João (Admin)", // só de exemplo, mas deve haver um "link" pra deslogar logo ao lado.
+            // Text = "João (Admin)",
             ForeColor = Color.White,
             Font = new Font("Segoe UI", 10),
             AutoSize = true,
             Anchor = AnchorStyles.Top | AnchorStyles.Right,
-            Location = new Point(100, 22)
         };
+        lblUsuario.Location = new Point(100 - lblUsuario.Width, 22);
 
         pnlTopo.Controls.Add(lblTitulo);
         pnlTopo.Controls.Add(lblUsuario);

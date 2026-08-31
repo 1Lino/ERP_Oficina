@@ -1,9 +1,9 @@
 [
   {
     "Id": 1,
-    "Nome": "Administrador",
+    "Nome": "Marcos Oliveira",
     "Email": "admin@oficina.com",
-    "SenhaHash": "123456",
+    "SenhaHash": "$2a$11$5TUY6GtnFPM4oEDQzXdz.eeYfRKQIUuzBwP/27yqn13qy2Ds6wZn6",
     "Perfil": "Administrador",
     "DataCriacao": "2026-01-10",
     "Ativo": true
@@ -12,7 +12,7 @@
     "Id": 2,
     "Nome": "Carlos Silva",
     "Email": "carlos@oficina.com",
-    "SenhaHash": "123456",
+    "SenhaHash": "$2a$11$O41s929hqrjxBQxNd0tQhuwN4Z2mgnQw08/YDVb7bJSzR870dXApa",
     "Perfil": "Técnico",
     "DataCriacao": "2026-02-05",
     "Ativo": true
@@ -21,7 +21,7 @@
     "Id": 3,
     "Nome": "Mariana Souza",
     "Email": "mariana@oficina.com",
-    "SenhaHash": "123456",
+    "SenhaHash": "$2a$11$s5QeeRpTGJyZzBth/1BYT.Sz7y3cAXaZcs3J8qgWaPF6GrPT32q6e",
     "Perfil": "Atendente",
     "DataCriacao": "2026-03-12",
     "Ativo": true
@@ -30,7 +30,7 @@
     "Id": 4,
     "Nome": "Rafael Oliveira",
     "Email": "rafael@oficina.com",
-    "SenhaHash": "123456",
+    "SenhaHash": "$2a$11$u3/znGVkKlbDS4PhPZi9A.3ISoNwlo2tFg85CWVx/9cT2P9LjtXq6",
     "Perfil": "Técnico",
     "DataCriacao": "2026-04-18",
     "Ativo": true
