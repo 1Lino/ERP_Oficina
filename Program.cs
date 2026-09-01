@@ -1,5 +1,7 @@
 namespace ERP_Oficina;
 
+using ERP_Oficina.forms.Login; // acessa o namespace ERP_Oficina.forms.Login pra podermos utilizar Authenticator.
+
 static class Program
 {
     /// <summary>

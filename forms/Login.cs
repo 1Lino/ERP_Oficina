@@ -25,6 +25,7 @@ public partial class Authenticator : Form
         DadosMock.CarregarUsuarios();
         this.CenterToScreen();
 
+        // produz hashes para as senhas:
         // string senhaHash = BCryptHash.HashPassword(senhas[3]);
         // Console.WriteLine(senhaHash);
     }
@@ -106,7 +107,6 @@ public partial class Authenticator : Form
             Top = 190,
             Cursor = Cursors.Hand
         };
-        // btn_login.DialogResult = DialogResult.OK;
 
         btn_login.Click += (_, _) => btnLogin_Click(txt_email, txt_senha, authService);
 
@@ -304,6 +304,9 @@ public class AuthService
         Repository = repository;
     }
 
+    // TODO: falta adicionar outras informações importantes ao cadastro, tais como Id, Perfil, DataCriacao e Ativo
+    // o Id deve ser puxado a partir do último id existente na base e acrescentado +1, simplesmente. Perfil é 
+    // qualquer um de uma lista disponível de perfis. DataCriacao pode ser interno da função, e Ativo também.
     public bool Cadastrar(string nome, string login, string senha)
     {
         // verifica se já existe usuário com este email/login, pra impedir cadastro duplicado.
