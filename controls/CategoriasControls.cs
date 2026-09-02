@@ -1,4 +1,7 @@
 
+using ERP_Oficina.Models.Permissao;
+using ERP_Oficina.Services.Autorizacao;
+
 namespace ERP_Oficina.Controls
 {
     public class CategoriasControl : UserControl
@@ -90,6 +93,7 @@ namespace ERP_Oficina.Controls
 
             btnEditar.Width = 90;
             btnEditar.Height = 35;
+            btnEditar.Enabled = Autorizacao.TemPermissao(Permissao.EditarProdutos);
 
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
@@ -105,6 +109,7 @@ namespace ERP_Oficina.Controls
 
             btnNovo.Width = 90;
             btnNovo.Height = 35;
+            btnNovo.Enabled = Autorizacao.TemPermissao(Permissao.EditarProdutos);
 
             btnNovo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 

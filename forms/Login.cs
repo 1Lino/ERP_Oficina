@@ -1,5 +1,10 @@
-using BCryptHash = BCrypt.Net.BCrypt; // comando do pacote: dotnet add package BCrypt.Net-Next
-namespace ERP_Oficina;
+// esse namespace serve pra indicar o contexto das classes desse arquivo. É apenas um nome de identificação.
+// Assim, todos as demais partes que tiverem de utilizar Authenticator, deverão especificar "using ERP_Oficina.forms.Login;"
+namespace ERP_Oficina.Forms.Login;
+
+using ERP_Oficina.Services.Autenticacao;
+using ERP_Oficina.Services.Autorizacao;
+using ERP_Oficina.Services.Sessao;
 
 public partial class Authenticator : Form
 {
@@ -265,84 +270,12 @@ public partial class Authenticator : Form
         if (autenticacao.sucesso)
         {
             UsuarioAutenticado = autenticacao.usuario;
-            Console.WriteLine(UsuarioAutenticado.Nome);
+            Sessao.Iniciar(UsuarioAutenticado);
             DialogResult = DialogResult.OK;
-
             Close();
         }
 
         MessageBox.Show(autenticacao.sucesso ? "Login realizado." : "Login inválido.");
-    }
-}
-
-
-// // Simulação da base de usuários. A camada de userRepository é uma camada de dados, somente acessada pelo backend da aplicação
-// // qualquer coisa só pode ser registrada nos dados se passar pelas validações e pelo processo de autenticação.
-public class UsuarioRepository
-{
-    private static List<Usuario> usuarios = DadosMock.Usuarios;
-
-    public void Adicionar(Usuario usuario)
-    {
-        usuarios.Add(usuario);
-    }
-
-    public Usuario Buscar(string login)
-    {
-        return usuarios.FirstOrDefault(u => u.Email == login);
-    }
-}
-
-// // Isso aqui lida com o processo de autenticação. No caso, esta camada tem acesso aos dados da base.
-public class AuthService
-{
-    private static UsuarioRepository Repository;
-    // public static Usuario UsuarioAutenticado { get; private set; }
-
-    public AuthService(UsuarioRepository repository)
-    {
-        Repository = repository;
-    }
-
-    // TODO: falta adicionar outras informações importantes ao cadastro, tais como Id, Perfil, DataCriacao e Ativo
-    // o Id deve ser puxado a partir do último id existente na base e acrescentado +1, simplesmente. Perfil é 
-    // qualquer um de uma lista disponível de perfis. DataCriacao pode ser interno da função, e Ativo também.
-    public bool Cadastrar(string nome, string login, string senha)
-    {
-        // verifica se já existe usuário com este email/login, pra impedir cadastro duplicado.
-        if (Repository.Buscar(login) != null)
-            return false;
-
-        var hashPass = BCryptHash.HashPassword(senha);
-        Console.WriteLine($"Senha convertida para o hash: {hashPass}");
-
-        Repository.Adicionar(new Usuario
-        {
-            Nome = nome,
-            Email = login,
-            SenhaHash = hashPass
-        });
-
-        return true;
-    }
-
-    public AuthResponse Login(string login, string senha)
-    {
-        var usuario = Repository.Buscar(login); // retorna o usuário correspondente ao email passado
-
-        return new AuthResponse(usuario != null && BCryptHash.Verify(senha, usuario.SenhaHash), usuario);
-    }
-}
-
-// objeto simples pra controlar tanto o sucesso do login como o nome do usuário, já que preciso dos dois dados.
-public class AuthResponse
-{
-    public bool sucesso { get; private set; }
-    public Usuario usuario { get; private set; }
-    public AuthResponse(bool userExists, Usuario user)
-    {
-        sucesso = userExists;
-        usuario = user;
     }
 }
 

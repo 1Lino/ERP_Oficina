@@ -1,4 +1,7 @@
 
+using ERP_Oficina.Models.Permissao;
+using ERP_Oficina.Services.Autorizacao;
+
 namespace ERP_Oficina.Controls
 {
     public class ClientesControl : UserControl
@@ -78,6 +81,7 @@ namespace ERP_Oficina.Controls
 
             btnEditar.Width = 90;
             btnEditar.Height = 35;
+            btnEditar.Enabled = Autorizacao.TemPermissao(Permissao.EditarClientes);
 
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 

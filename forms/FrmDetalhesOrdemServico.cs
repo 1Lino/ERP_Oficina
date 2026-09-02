@@ -1,4 +1,7 @@
 // Este formulário se refere às abas de detalhes ao dar duplo clique em alguma Ordem de Serviço
+using ERP_Oficina.Models.Permissao;
+using ERP_Oficina.Services.Autorizacao;
+
 namespace ERP_Oficina.Forms
 {
     public class FormDetalhesOrdemServico : Form
@@ -258,6 +261,7 @@ namespace ERP_Oficina.Forms
             btnRemoverServico = CriarBotao("Remover", Color.White, Color.FromArgb(220, 53, 69));
             btnRemoverServico.Width = 100;
             btnRemoverServico.Height = 35;
+            btnRemoverServico.Enabled = Autorizacao.TemPermissao(Permissao.EditarOrdensServico);
             btnRemoverServico.Location = new Point(135, 20);
             btnRemoverServico.Click += BtnRemoverServico_Click;
 
@@ -370,6 +374,7 @@ namespace ERP_Oficina.Forms
             btnRemoverMaterial = CriarBotao("Remover", Color.White, Color.FromArgb(220, 53, 69));
             btnRemoverMaterial.Width = 100;
             btnRemoverMaterial.Height = 35;
+            btnRemoverMaterial.Enabled = Autorizacao.TemPermissao(Permissao.EditarOrdensServico);
             btnRemoverMaterial.Location = new Point(135, 20);
             btnRemoverMaterial.Click += BtnRemoverMaterial_Click;
 

@@ -1,5 +1,7 @@
 
 using ERP_Oficina.Forms;
+using ERP_Oficina.Models.Permissao;
+using ERP_Oficina.Services.Autorizacao;
 
 namespace ERP_Oficina.Controls
 {
@@ -106,6 +108,7 @@ namespace ERP_Oficina.Controls
 
             btnNovo.Width = 90;
             btnNovo.Height = 35;
+            btnNovo.Enabled = Autorizacao.TemPermissao(Permissao.GerenciarUsuarios);
             btnNovo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNovo.Click += BtnNovo_Click;
 
@@ -116,6 +119,7 @@ namespace ERP_Oficina.Controls
 
             btnEditar.Width = 90;
             btnEditar.Height = 35;
+            btnEditar.Enabled = Autorizacao.TemPermissao(Permissao.GerenciarUsuarios);
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditar.Click += BtnEditar_Click;
 
@@ -126,6 +130,7 @@ namespace ERP_Oficina.Controls
 
             btnAlterarStatus.Width = 130;
             btnAlterarStatus.Height = 35;
+            btnAlterarStatus.Enabled = Autorizacao.TemPermissao(Permissao.GerenciarUsuarios);
             btnAlterarStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAlterarStatus.Click += BtnAlterarStatus_Click;
 

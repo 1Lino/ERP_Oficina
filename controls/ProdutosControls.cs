@@ -1,5 +1,7 @@
 
 using ERP_Oficina.Forms;
+using ERP_Oficina.Models.Permissao;
+using ERP_Oficina.Services.Autorizacao;
 
 namespace ERP_Oficina.Controls
 {
@@ -92,6 +94,7 @@ namespace ERP_Oficina.Controls
             btnEditar = CriarBotao("Editar", Color.White, Color.FromArgb(70, 70, 70));
             btnEditar.Width = 90;
             btnEditar.Height = 35;
+            btnEditar.Enabled = Autorizacao.TemPermissao(Permissao.EditarProdutos);
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditar.Location = new Point(pnlHeader.Width - 190, 5);
 
@@ -104,6 +107,7 @@ namespace ERP_Oficina.Controls
             btnNovo = CriarBotao("Novo", Color.FromArgb(0, 120, 215), Color.White);
             btnNovo.Width = 90;
             btnNovo.Height = 35;
+            btnNovo.Enabled = Autorizacao.TemPermissao(Permissao.EditarProdutos);
             btnNovo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNovo.Location = new Point(pnlHeader.Width - 90, 5);
 

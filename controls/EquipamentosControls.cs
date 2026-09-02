@@ -1,4 +1,6 @@
 
+using ERP_Oficina.Models.Permissao;
+using ERP_Oficina.Services.Autorizacao;
 using System.Diagnostics.Tracing;
 
 namespace ERP_Oficina.Controls
@@ -69,6 +71,7 @@ namespace ERP_Oficina.Controls
 
             btnEditar.Width = 90;
             btnEditar.Height = 35;
+            btnEditar.Enabled = Autorizacao.TemPermissao(Permissao.EditarEquipamentos);
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditar.Location = new Point(pnlHeader.Width - 190, 5);
 
@@ -83,6 +86,7 @@ namespace ERP_Oficina.Controls
 
             btnNovo.Width = 90;
             btnNovo.Height = 35;
+            btnNovo.Enabled = Autorizacao.TemPermissao(Permissao.EditarEquipamentos);
 
             btnNovo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNovo.Location = new Point(pnlHeader.Width - 90, 5);
